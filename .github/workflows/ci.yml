@@ -10,3 +10,9 @@ jobs:
       run: |
         pip3 install --user django
         python3 manage.py test
+    - name: Invoke deployment hook
+      uses: distributhor/workflow-webhook@v1
+      env:
+        webhook_url: ${{ secrets.WEBHOOK_URL }}
+        webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+    

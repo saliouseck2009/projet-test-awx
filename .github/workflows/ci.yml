@@ -13,6 +13,6 @@ jobs:
     - name: Invoke deployment hook
       uses: distributhor/workflow-webhook@v1
       env:
-        webhook_url: ${{ secrets.WEBHOOK_URL }}
-        webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+        webhook_url: http://3e5fa5cf4331.ngrok.io:80/api/v2/job_templates/12/github/
+        webhook_secret: UPN1EgQqUuCLNZXOxa2qW4lAW4mHdxiOeVpcJcsvwMgVVTWB4u
     

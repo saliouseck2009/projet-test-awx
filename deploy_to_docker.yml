@@ -1,40 +1,56 @@
----
-- name: Hello World!
-  hosts: all
+# ---
+# - name: Hello World!
+#   hosts: all
  
-  tasks:
+#   tasks:
  
-  - name: Pull a Docker Image
-    docker_image:
-       name: django
-       tag: latest
-       source: pull
-    register: z
+#   - name: Pull a Docker Image
+#     docker_image:
+#        name: django
+#        tag: latest
+#        source: pull
+#     register: z
 
-  - name: Checking Pull status
-    debug:
-      var: z
+#   - name: Checking Pull status
+#     debug:
+#       var: z
 
-  - name: Copying the code to the container
-    git:
-      repo: git@github.com:saliouseck2009/projet-test-awx.git
-      dest: /home/vagrant
+#   - name: Copying the code to the container
+#     git:
+#       repo: https://github.com/saliouseck2009/projet-test-awx.git
+#       dest: /home/vagrant
 
-  - name: Install depence
-    pip:
-      name: django
-      executable: pip-3
-
-  - name: Lunching the container
-    when: z.failed == false
-    docker_container:
-      name: django application
-      image: django
-      state: started
-      exposed_ports:
-        - "8000"
-      ports:
-        - "8000:8000"
+#   - name: Install depence
+#     pip:
+#       name: django
+#       executable: pip-3
+#   - name: Lunching the container
+#     when: z.failed == false
+#     docker_container:
+#       name: django application
+#       image: django
+#       state: started
+#       exposed_ports:
+#         - "8000"
+#       ports:
+#         - "8000:8000"
 
 
     
+- hosts: managed_Node
+  become: yes
+  tasks: 
+    - name: Clone the git ripo
+      git:
+        repo: https://github.com/saliouseck2009/projet-test-awx.git
+        dest: /home/vagrant/projet/
+    - name: Build docker container 
+      shell: docker build -t test-awx-seck .
+      args:
+        chdir: /home/vagrant/projet/
+    - name: Run the container 
+      shell: docker run -p 8000:8000 test-awx-seck
+      args:
+        chdir: /home/vagrant/projet/
+     
+     

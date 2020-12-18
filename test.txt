@@ -1,4 +1,2 @@
-export WEBHOOK_URL=http://3e5fa5cf4331.ngrok.io:80/api/v2/job_templates/12/github/
-export WEBHOOK_SECRET=UPN1EgQqUuCLNZXOxa2qW4lAW4mHdxiOeVpcJcsvwMgVVTWB4u
-webhook_url: ${{ secrets.WEBHOOK_URL }}
-        webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+[managed_Node]
+192.168.33.10      ansible_ssh_user=root    ansible_ssh_pass=toor

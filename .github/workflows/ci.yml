@@ -13,12 +13,12 @@ jobs:
     - name: Invoke deployment hook
       uses: distributhor/workflow-webhook@v1
       env:
-        webhook_url: http://3e5fa5cf4331.ngrok.io:80/api/v2/job_templates/12/github/
-        webhook_secret: UPN1EgQqUuCLNZXOxa2qW4lAW4mHdxiOeVpcJcsvwMgVVTWB4u
+        webhook_url: ${{ secrets.WEBHOOK_URL }}
+        webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
     - name: Notify slack fail
       if: failure()
       env:
-        SLACK_BOT_TOKEN: xoxb-1546538880519-1561156860085-gAmqVGAXODi0fi5V5XM67tY0
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       uses: voxmedia/github-action-slack-notify-build@v1
       with:
         channel: app-alerts

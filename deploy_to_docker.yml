@@ -20,7 +20,7 @@
       repo: git@github.com:saliouseck2009/projet-test-awx.git
       dest: /home/vagrant
   -name: Install depence
-  - pip:
+    pip:
       name: django
       executable: pip-3
 

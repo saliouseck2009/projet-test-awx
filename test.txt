@@ -1,2 +1,2 @@
 [managed_Node]
-192.168.33.10      ansible_ssh_user=root    ansible_ssh_pass=toor
+192.168.33.10      ansible_ssh_user=root    ansible_ssh_pass=toors
